@@ -391,17 +391,22 @@ contract MerQLAnchor {
 ## Useful Resources:
 
 
-*   Facuets:
+Faucets
 
-If you have or create an Infura Account:
-https://www.infura.io/faucet/sepolia
+If you have or create an Infura Account you can use:
+* https://www.infura.io/faucet/sepolia
+* https://www.infura.io/faucet/linea
 
-If you have or create an Alchemy Account:
-https://sepoliafaucet.com/
+If you have or create an Alchemy Account you can use:
+* https://sepoliafaucet.com/
+* https://goerlifaucet.com/
 
-If you have twitter:
-https://faucet-sepolia.rockx.com/
+If you have or create a Twitter Account you can use:
+* https://faucet-sepolia.rockx.com/
+* https://faucet.paradigm.xyz/
 
+
+Other Useful Links
 
 *   [MetaMask Developer Documentation](https://docs.metamask.io/guide/)
 *   [Etheres.js documentation](https://docs.ethers.io/v5/)
