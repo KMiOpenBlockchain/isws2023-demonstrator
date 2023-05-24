@@ -239,27 +239,27 @@ Then close this window and return to the main screen. If you select the network 
 
 For our demo, we have used the Sepolia Tesnet. But you can use any testnet. 
 For each of testnet you wish to use, you will need to go to an available faucet where you can aquire some test eth. 
-This will allow you to write data to that ethereum testnet blockchain
-
-Before interacting with our demo, please select the testnet you want to use in your MetaMask Wallet and make sure you have some eth on that network.  
-
-![](images/docs/metamask9.png)  
+This will allow you to write data to that ethereum testnet blockchain.
 
   
 If you Google Ethereum testnet faucets, there are many options.
 Here are a few options to get you started:
 
-If you have or create an Infura Account:
-https://www.infura.io/faucet/sepolia
-https://www.infura.io/faucet/linea
+If you have or create an Infura Account you can use:
+* https://www.infura.io/faucet/sepolia
+* https://www.infura.io/faucet/linea
 
-If you have or create an Alchemy Account:
-https://sepoliafaucet.com/
-https://goerlifaucet.com/
+If you have or create an Alchemy Account you can use:
+* https://sepoliafaucet.com/
+* https://goerlifaucet.com/
 
-If you have or create a Twitter Account:
-https://faucet-sepolia.rockx.com/
-https://faucet.paradigm.xyz/
+If you have or create a Twitter Account you can use:
+* https://faucet-sepolia.rockx.com/
+* https://faucet.paradigm.xyz/
+
+Before interacting with our demo, please select the testnet you want to use in your MetaMask Wallet and make sure you have some eth on that network.  
+
+![](images/docs/metamask9.png)  
 
  
 
