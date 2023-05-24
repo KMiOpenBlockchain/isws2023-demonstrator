@@ -220,18 +220,48 @@ On the next page, you’ll be given a set of 12 words that act as your private k
 
 ![](images/docs/metamask4b.png) 
 
-Once you have created your wallet, you will automatically be able to switch between a set of public Ethereum blockchain networks.  
-For our demo, we have used the Goerli Tesnet. So before interacting with our demo, please select the Goerli Testnet in your MetaMask Wallet.  
-  
+Once you have created your wallet, you need to turn on seeing Ethereum Testnets as they are off by default. 
+Click the coloured ball on the top right of the screen to show your accounts area.
+
 ![](images/docs/metamask5a.png)  
 
-If it is unavailable, you will need to go to the settings / advanced and turn on the test networks
+Then select 'Settings'
 
-![](images/docs/metamask7.png)  
+![](images/docs/metamask5b.png)  
+
+Then select 'Advanced'. Scroll down until you see 'Show Test Networks' and toggle that on.
+
+![](images/docs/metamask5c.png)  
+
+Then close this window and return to the main screen. If you select the network dropdown at the top, you should now see the test networks you can select from.
+
+![](images/docs/metamask8.png)  
+
+For our demo, we have used the Sepolia Tesnet. But you can use any testnet. 
+For each of testnet you wish to use, you will need to go to an available faucet where you can aquire some test eth. 
+This will allow you to write data to that ethereum testnet blockchain
+
+Before interacting with our demo, please select the testnet you want to use in your MetaMask Wallet and make sure you have some eth on that network.  
+
+![](images/docs/metamask9.png)  
+
   
-Your account should be pre-seeded with 1 Rinkgy eth. Transaction costs are low on Rinbky so this should be sufficient.  
-However, if you require more eth at any point, you can request 0.5 eth a day from this Faucet: [Top up your Rinkby Eth (0.5 eth a day)](https://faucet.paradigm.xyz/)  
-  
+If you Google Ethereum testnet faucets, there are many options.
+Here are a few options to get you started:
+
+If you have or create an Infura Account:
+https://www.infura.io/faucet/sepolia
+https://www.infura.io/faucet/linea
+
+If you have or create an Alchemy Account:
+https://sepoliafaucet.com/
+https://goerlifaucet.com/
+
+If you have or create a Twitter Account:
+https://faucet-sepolia.rockx.com/
+https://faucet.paradigm.xyz/
+
+ 
 
 ### Working with MetaMask
 
