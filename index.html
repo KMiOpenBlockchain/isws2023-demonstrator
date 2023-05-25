@@ -66,7 +66,7 @@
 
 						<div style="clear:both;float:left;">
 							<label id="oidcIssuerlabel" for="oidcIssuer">Your OpenID Connect Solid Issuer URL: </label>
-							<input type="url" id="oidcIssuer" name="oidcIssuer"  size="60" pattern="https://.*">
+							<input type="url" id="oidcIssuer" name="oidcIssuer"  size="60" pattern="https://.*" placeholder="e.g., https://login.inrupt.com/">
 							<button class="buttonsolid" name="solidLoginButton" id="solidLoginButton">Connect to Solid</button>
 						</div>
 
@@ -80,7 +80,7 @@
 							<h4>Specify the Solid Folder to store data to</h4>
 							<br />
 							<label id="podlabel" for="PodURL">Solid Pod Storage Folder URL: </label>
-							<input type="url" id="PodURL" name="PodURL"  size="100" pattern="https://.*" placeholder="e.g., https://pod.inrupt.com/<username>/ISWS/"> must end in a '/'
+							<input type="url" id="PodURL" name="PodURL"  size="100" pattern="https://.*" placeholder="e.g., https://storage.inrupt.com/<your storage id>/ISWS/"> must end in a '/'
 
 							<br /><br />
 							<button class="buttonsolid" disabled="true" name="readFileFromSolidButton" id="readFileFromSolidButton">Read Files from Solid</button>

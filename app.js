@@ -714,9 +714,9 @@ async function validateGranular() {
 		}
 
 		const granularMetadataValidationInputArea = document.getElementById('granularMetadataValidationInputArea');
-		let granularMetaData = "";
+		let allMetaData = "";
 		if (granularMetadataValidationInputArea.value != "" && granularMetadataValidationInputArea.value != null) {
-			granularMetaData = granularMetadataValidationInputArea.value
+			allMetaData = granularMetadataValidationInputArea.value;
 		} else {
 			alert("Please load the anchored metadata to use for validation");
 			return;
@@ -733,6 +733,11 @@ async function validateGranular() {
 		}
 
 		validateGranularResult.value = "Depending on the input size, this can take a while. Please wait...";
+
+		console.log(allMetaData);
+
+		granularMetaData = JSON.parse(allMetaData).granular;
+		console.log(granularMetaData);
 
 		const output = await linkchains.verify(rdfInputData, granularMetaData, options, handler);
 
