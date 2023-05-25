@@ -33,7 +33,7 @@ The Linkchain library supports the use of Merkle trees to provide blockchain-bas
 
 From the end user point of view, there are two types of data: the RDF itself, and the metadata needed to perform verification. The metadata itself comes in two forms: a compact form representing the full set of Merkle trees associated with a given set of RDF quads, and a much more verbose 'granular' form which associates each individual quad with a Merkle proof and the metadata needed to associate each proof with an immutable blockchain record. The first form of metadata can be used to verify, as a simple yes or no, whether a provided set of quads is identical up to blank node renaming to the set used to generate and anchor that metadata. The second form (which can be (re)generated at any time from the original set of quads and the first form) allows partial verification and sharing. That is, given a set of quads and a (sub)set of granular metadata, it is possible to identify exactly which quads in that set do or don't correspond to the originally anchored set.
 
-The functions of the library correspond to four different steps of processing, given a set of quads 'quads'.
+The functions of the library correspond to four different steps of processing, given a set of 'quads'.
 
 1. Generate verification metadata for 'quads' (not associated with any blockchain record)
 2. Anchor verification metadata to a blockchain (adds relevant anchor details to step 1 result)
@@ -42,9 +42,9 @@ The functions of the library correspond to four different steps of processing, g
 
 Only the outputs of steps 2 and 3 can be used to verify in step 4 - verification requires the anchoring metadata. Either format of metadata may be passed in to step 4.
 
-Steps 2 and 4 require writing to, and reading from, respectively, a blockchain. Because methods for talking to different blockchains vary, as do methods for talking to the same blockchain from different environments (e.g., browser JS vs. server node.js), the corresponding library functions each take a callback function to handle the actual writing/reading, as appropriate. The library parses and handles the inputs and results as needed.With this demonstrator, callbacks which correspond to anchoring with a simple smart contract, and with a non-fungible token (NFT) contract, are provided.
+Steps 2 and 4 require writing to, and reading from, respectively, a blockchain. Because methods for talking to different blockchains vary, as do methods for talking to the same blockchain from different environments (e.g., browser JS vs. server node.js), the corresponding library functions each take a callback function to handle the actual writing/reading, as appropriate. The library parses and handles the inputs and results as needed. 
  
-Main linkchain Library functions used in this demonstrator:
+### Main linkchain Library functions:
 
 ```
 getVerificationMetadata: async function (quads, options)
@@ -310,7 +310,7 @@ Before interacting with our demo, please select the testnet you want to use in y
 
 To interact with the blockchain through Metamask, we use the ethers.js library by including the following script in our webpage: 'https://cdn.ethers.io/lib/ethers-5.2.umd.min.js'.
 
-Before you can connect to MetaMask to talk to the blockchain, you must have logged into MetaMask in your browser. In our demonstraotr, in the first tab, you will see a button called 'Connect To MetaMask'. This button will only be available if you have not already logged into MetaMask in your current browser session. Clicking this will launch the MetaMask app and you will be asked to login and permission the website to interact with it.  
+Before you can connect to MetaMask to talk to the blockchain, you must have logged into MetaMask in your browser. In our demonstrator, in the first tab, you will see a button called 'Connect To MetaMask'. This button will only be available if you have not already logged into MetaMask in your current browser session. Clicking this will launch the MetaMask app and you will be asked to login and permission the website to interact with it.  
   
 See the function _'loginToMetaMask'_ in _'app.js'_ in our demo source code for full details.  
   
@@ -339,20 +339,19 @@ For full details, their documentation can be found here: [https://docs.ethers.io
 
 ## Solid and the Inrupt API
 
-Solid is a technology for organizing data, applications, and identities on the web. Solid enables richer choices for people, organizations and app developers by building on existing web standards.  
-More information can be read here: https://inrupt.com/solid/
+Solid is a technology for organizing data, applications, and identities on the web. Solid enables richer choices for people, organizations and app developers by building on existing web standards. More information can be read here: https://inrupt.com/solid/
 
 ### Creating an Inrupt Solid Pod
 
-Our demonstrator uses Solid as a file store. In order to store and retreive files in the demo, you will first need to create yourself an inrupt.com solid pod.  
-Sign up for an Inrupt Solid Pod here: [https://signup.pod.inrupt.com/](https://signup.pod.inrupt.com/)  
+Our demonstrator uses Solid as a file store. In order to store and retreive files in the demo, you will first need to create yourself an inrupt.com solid pod. Sign up for an Inrupt Solid Pod here: [https://signup.pod.inrupt.com/](https://signup.pod.inrupt.com/)  
   
 For more information on using your Solid pod from the Inrupt podbrowser interface, please see their documentation: [https://docs.inrupt.com/user-interface/podbrowser/](https://docs.inrupt.com/user-interface/podbrowser/)  
 
 ### Working with the Inrupt API
 
-We have create an separate Inrupt library, ([https://github.com/KMiOpenBlockchain/isws2022-inrupt](https://github.com/KMiOpenBlockchain/isws2022-inrupt)), that this demo uses to call Solid and read and write files. Please see the source code and speparate read me on using this library.
-  
+We have create an separate Inrupt library, ([https://github.com/KMiOpenBlockchain/isws2022-inrupt](https://github.com/KMiOpenBlockchain/isws2022-inrupt)), that our demo uses to call Solid and read and write files. Please see the source code and speparate read me on using this library.
+
+Useful Documents:
 [https://inrupt.com/products/dev-tools](https://inrupt.com/products/dev-tools)  
 [https://docs.inrupt.com/developer-tools/javascript/client-libraries/](https://docs.inrupt.com/developer-tools/javascript/client-libraries/)
 

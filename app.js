@@ -178,7 +178,7 @@ async function initLinkchain() {
 		if (oidcIssuerUrl == null || oidcIssuerUrl == "") {
 			alert("Please add the url of where to login to your Solid pod");
 		} else {
-			Inrupt.startSolidLogin(oidcIssuerUrl, "ISWS Summer School Demo - 2022", window.location.href);
+			Inrupt.startSolidLogin(oidcIssuerUrl, "ISWS Summer School Demo - 2023", window.location.href);
 		}
 	};
 
