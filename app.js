@@ -723,23 +723,6 @@ async function validateGranular() {
 		}
 
 		const handler = async function(anchor, options) {
-
-			//get data from new structure
-
-			/*
-			const anchoredMetadata = linkchains.anchor(...);
-			const granularMetadata = linkchains.getGranularMetadata(....);
-			const fullMetadata = {
-				"granular": granularMetadata,
-				"full": anchoredMetadata
-			};
-
-			.....
-
-			const verification = linkchains.verify(fullMetadata.granular, ...);
-			*/
-
-			// check if merkle or blockchain verification
 			let reply = "";
 			if (anchor.type == "ETHMerQL") {
 				reply = await readMerQLAnchorContract(anchor, options);

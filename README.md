@@ -5,17 +5,14 @@
  
 *   [Overview](#overview)
 *   [Linkchain RDF Verification](#linkchain-rdf-verification)
+    *   [MerQLAnchor Smart Contract](#merqlanchor-smart-contract)
 *   [MetaMask and the Ethereum Testnets](#metamask-and-the-ethereum-testnets)
       *   [Installing MetaMask](#installing-metamask)
       *   [Working with MetaMask](#working-with-metamask)
  
 *   [Solid and the Inrupt API](#solid-and-the-inrupt-api)
       *   [Creating an Inrupt Solid Pod](#creating-an-inrupt-solid-pod)
-      *   [Working with the Inrupt API](#working-with-the-inrupt-api)
- 
-*   [Smart Contracts](#smart-contracts)
-      *   [MerQLAnchor Smart Contract](#merqlanchor-smart-contract)
- 
+      *   [Working with the Inrupt API](#working-with-the-inrupt-api) 
 *   [Stepping Through the Demo](#stepping-through-the-demo)
 *   [Useful Resources](#useful-resources)
  
@@ -55,25 +52,14 @@ getVerificationMetadata: async function (quads, options)
 Accepts 'quads' in JSON-LD, or N-Triples/N-Quads/N3/Turtle, and 'options' ({} for defaults).
 Returns unanchored Linkchain MerQL verification metadata.
 
-Code snippet from ISWS 2022 Demonstrator:
+Code snippet example:
 ```
 try {
-  const inputarea = document.getElementById('inputarea');
-  quadsFinal = inputarea.value;
+  quadsFinal = <the rdf to get verification metadata for>
 
   if (quadsFinal != "" && quadsFinal != null) {
-    metadata = await linkchains.getVerificationMetadata(quadsFinal, {});
-
-    const verificationMetadataResult = document.getElementById('verificationMetadataResult');
-    verificationMetadataResult.value = JSON.stringify(metadata, null, 2);
-
-    // also add to next stage for non solid workflow
-    const verificationMetadata = document.getElementById('verificationmetadatainputarea');
-    verificationMetadata.value = JSON.stringify(metadata, null, 2);
-
-    // also add to next stage for non solid workflow
-    const verificationMetadataTokenInputArea = document.getElementById('verificationMetadataTokenInputArea');
-    verificationMetadataTokenInputArea.value = JSON.stringify(metadata, null, 2);
+    let options = {}
+    metadata = await linkchains.getVerificationMetadata(quadsFinal, options);
   } else {
     alert("Please select a file of RDF first");
   }
@@ -93,35 +79,11 @@ Returns anchored Linkchain MerQL verification metadata.
 
 anchorFunction takes care of actual blockchain writing based on options (contents of options vary with implementation of anchorFunction)
 
-Code snippet from ISWS 2022 Demonstrator for acnhoring with a MerQL Anchor Contract:
+Code snippet example for anchoring with a MerQL Anchor Contract:
 ```
-let dataToAnchor = <the rdf code that was anchored>;
 let options = {} // requires no additional options as it is using the default Linkchain MerQL Contract way of anchoring
-const anchoredMetadata = await linkchains.anchorMetadata(dataToAnchor, options, deployMerQLAnchorContract);
-
-```
-
-Code snippet from ISWS 2022 Demonstrator for anchoring with tokens:
-```
-
 let dataToAnchor = <the rdf code that was anchored>;
-
-let options = {
-  address: cfg.tokenContractAddress,
-  account: account,
-  transactionHash:"0x0x0000000000000000000000000000000000000000",
-  anchorType : 'RDFTokens',
-  tokenName: name,
-  tokenDescription: description,
-  tokenImageURL: imageurl
-}
-
-const handler = async function(anchor, options) {
-  let reply = await issueToken(anchor, options);
-  return reply;
-}
-
-const anchoredMetadata = await linkchains.anchorMetadata(dataToAnchor, options, handler);
+const anchoredMetadata = await linkchains.anchorMetadata(dataToAnchor, options, deployMerQLAnchorContract);
 
 ```
 
@@ -136,11 +98,12 @@ Returns anchored granular Linkchain MerQL metadata suitable for per-quad verific
 
 This function will not work if passed unanchored metadata.
 
-Code snippet from ISWS 2022 Demonstrator:
+Code snippet example:
 ```
 const rdfInputData = <the rdf code that was acnhored>
-const anchoredData = <data returned from linkchains.anchorMetadata>
-const granularMetaData = await linkchains.getGranularVerificationMetadata(rdfInputData, anchoredData);
+const anchoredMetadata = <data returned from linkchains.anchorMetadata>
+
+const granularMetaData = await linkchains.getGranularVerificationMetadata(rdfInputData, anchoredMetadata);
 ```
 
 * * *
@@ -159,8 +122,25 @@ Returns an object
 ```
 containing N-Quad string representations of the verified/unverified quads in 'quads', as appropriate. If 'metadata' is not granular, then one of verified or unverified will be empty, depending on whether the verification failed or succeeded, respectively
 
-Code snippet from ISWS 2022 Demonstrator:
+Code snippet example:
 ```
+const rdfInputData = <the rdf code that was anchored>
+const anchoredMetadata = <the data returned from a call to linkchains.anchorMetadata>
+const granularMetaData = <the data returned from a call to linkchains.granularMetaData>
+
+const handler = async function(anchor, options) {
+  let reply = "";
+  if (anchor.type == "ETHMerQL") {
+    reply = await readMerQLAnchorContract(anchor, options);
+  }
+  console.log(reply);
+
+  return reply;
+}
+
+let options = {}
+const output = await linkchains.verify(rdfInputData, granularMetaData, options, handler);
+
 
 const rdfInputData = <the rdf code that was anchored>
 const anchoredMetadata = <the data returned from a call to linkchains.anchorMetadata>
@@ -180,6 +160,69 @@ const handler = async function(anchor, options) {
 
 const output = await linkchains.verify(rdfInputData, anchoredMetaData, options, handler);
 
+```
+
+### MerQLAnchor Smart Contract
+```
+pragma solidity ^0.5.7;
+
+contract MerQLAnchor {
+    string public targetHash;
+    uint256 public creationTime;
+    address public owner;
+    string public indexType; // Defines how data was split: uniform = data split based on LSD and divisor, subject = based on hash of subject term, object = based on hash of object term, predicate = based on hash of predicate term, graph = based on hash of graph term, subjectobject = based on hash of subject & object term
+    uint256 public leastSignificantDigits;
+    string public divisor;
+    string public quadHashFunction;
+    string public treeHashFunction;
+    string public indexHashFunction;
+
+    constructor(
+        string memory hashIn,
+        string memory newIndexType,
+        uint256 lsds,
+        string memory div,
+        string memory quadHashFunctionIn,
+        string memory treeHashFunctionIn,
+        string memory indexHashFunctionIn
+    ) public {
+        owner = msg.sender;
+        targetHash = hashIn;
+        creationTime = block.timestamp;
+        leastSignificantDigits = lsds;
+        divisor = div;
+        indexType = newIndexType;
+		quadHashFunction = quadHashFunctionIn;
+		treeHashFunction = treeHashFunctionIn;
+		indexHashFunction = indexHashFunctionIn;
+    }
+
+    function getData()
+        public
+        view
+        returns (
+            uint256 theCreationTime,
+            address theOwner,
+            string memory thetargetHash,
+            string memory theIndexType,
+            uint256 leastSignificants,
+            string memory theDivisor,
+        	string memory theQuadHashFunction,
+        	string memory theTreeHashFunction,
+        	string memory theIndexHashFunction
+        )
+    {
+        theCreationTime = creationTime;
+        theOwner = owner;
+        thetargetHash = targetHash;
+        theIndexType = indexType;
+        leastSignificants = leastSignificantDigits;
+        theDivisor = divisor;
+		theQuadHashFunction = quadHashFunction;
+		theTreeHashFunction = treeHashFunction;
+		theIndexHashFunction = indexHashFunction;
+    }
+}
 ```
 
 * * *
@@ -312,73 +355,6 @@ We have create an separate Inrupt library, ([https://github.com/KMiOpenBlockchai
   
 [https://inrupt.com/products/dev-tools](https://inrupt.com/products/dev-tools)  
 [https://docs.inrupt.com/developer-tools/javascript/client-libraries/](https://docs.inrupt.com/developer-tools/javascript/client-libraries/)
-
-* * *
-
-## Smart Contracts
-
-### MerQLAnchor Smart Contract
-```
-pragma solidity ^0.5.7;
-
-contract MerQLAnchor {
-    string public targetHash;
-    uint256 public creationTime;
-    address public owner;
-    string public indexType; // Defines how data was split: uniform = data split based on LSD and divisor, subject = based on hash of subject term, object = based on hash of object term, predicate = based on hash of predicate term, graph = based on hash of graph term, subjectobject = based on hash of subject & object term
-    uint256 public leastSignificantDigits;
-    string public divisor;
-    string public quadHashFunction;
-    string public treeHashFunction;
-    string public indexHashFunction;
-
-    constructor(
-        string memory hashIn,
-        string memory newIndexType,
-        uint256 lsds,
-        string memory div,
-        string memory quadHashFunctionIn,
-        string memory treeHashFunctionIn,
-        string memory indexHashFunctionIn
-    ) public {
-        owner = msg.sender;
-        targetHash = hashIn;
-        creationTime = block.timestamp;
-        leastSignificantDigits = lsds;
-        divisor = div;
-        indexType = newIndexType;
-		quadHashFunction = quadHashFunctionIn;
-		treeHashFunction = treeHashFunctionIn;
-		indexHashFunction = indexHashFunctionIn;
-    }
-
-    function getData()
-        public
-        view
-        returns (
-            uint256 theCreationTime,
-            address theOwner,
-            string memory thetargetHash,
-            string memory theIndexType,
-            uint256 leastSignificants,
-            string memory theDivisor,
-        	string memory theQuadHashFunction,
-        	string memory theTreeHashFunction,
-        	string memory theIndexHashFunction
-        )
-    {
-        theCreationTime = creationTime;
-        theOwner = owner;
-        thetargetHash = targetHash;
-        theIndexType = indexType;
-        leastSignificants = leastSignificantDigits;
-        theDivisor = divisor;
-		theQuadHashFunction = quadHashFunction;
-		theTreeHashFunction = treeHashFunction;
-		theIndexHashFunction = indexHashFunction;
-    }
-}
-```
 
 * * *
 
