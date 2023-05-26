@@ -49,11 +49,12 @@ body {
 .headlinks {
 	display: block;
 	margin-top: 45px;
-	margin-left: 40px;
+	margin-right: 40px;
 	bottom: 0;
 	float: right;
 	font: 0.9em helvetica, sans-serif;
 }
+
 #headlinks {
 	display: block;
 	margin-top: 5px;

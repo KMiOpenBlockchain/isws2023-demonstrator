@@ -262,7 +262,6 @@ async function initLinkchain() {
 			const fileurl = await Inrupt.writeFileToPod(file, pathToStore);
 
 			document.getElementById("anchorMetadataSolidURLResult").innerHTML = fileurl;
-			document.getElementById("anchoredMetadataInputURL").value = fileurl;
 		} catch (error) {
 			console.log(error);
 			alert(error.message);
