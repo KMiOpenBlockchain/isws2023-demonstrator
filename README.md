@@ -349,7 +349,7 @@ For more information on using your Solid pod from the Inrupt podbrowser interfac
 
 ### Working with the Inrupt API
 
-We have create an separate Inrupt library, ([https://github.com/KMiOpenBlockchain/isws2022-inrupt](https://github.com/KMiOpenBlockchain/isws2022-inrupt)), that our demo uses to call Solid and read and write files. Please see the source code and speparate read me on using this library.
+We have create an separate Inrupt library, ([https://github.com/KMiOpenBlockchain/isws-inrupt](https://github.com/KMiOpenBlockchain/isws-inrupt)), that our demo uses to call Solid and read and write files. Please see the source code and speparate read me on using this library.
 
 Useful Documents:
 [https://inrupt.com/products/dev-tools](https://inrupt.com/products/dev-tools)  
