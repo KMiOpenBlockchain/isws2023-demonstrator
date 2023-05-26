@@ -5,6 +5,7 @@
  
 *   [Overview](#overview)
 *   [Linkchain RDF Verification](#linkchain-rdf-verification)
+*   *   [Main Linkchain Library Functions](#main-linkchain-library-functions)
     *   [MerQLAnchor Smart Contract](#merqlanchor-smart-contract)
 *   [MetaMask and the Ethereum Testnets](#metamask-and-the-ethereum-testnets)
       *   [Installing MetaMask](#installing-metamask)
@@ -44,7 +45,7 @@ Only the outputs of steps 2 and 3 can be used to verify in step 4 - verification
 
 Steps 2 and 4 require writing to, and reading from, respectively, a blockchain. Because methods for talking to different blockchains vary, as do methods for talking to the same blockchain from different environments (e.g., browser JS vs. server node.js), the corresponding library functions each take a callback function to handle the actual writing/reading, as appropriate. The library parses and handles the inputs and results as needed. 
  
-### Main linkchain Library functions:
+### Main Linkchain Library functions
 
 ```
 getVerificationMetadata: async function (quads, options)
