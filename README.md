@@ -360,7 +360,7 @@ Useful Documents:
 
 ## Stepping Through the Demo
 
-[![Foo](https://blockchain7.kmi.open.ac.uk/movies/movies/isws-movie-2023.png)](https://blockchain7.kmi.open.ac.uk/movies/movies/isws-movie-2023.mp4)
+[![Foo](https://blockchain18.kmi.open.ac.uk/movies/movies/isws-movie-2023.png)](https://blockchain18.kmi.open.ac.uk/movies/movies/isws-movie-2023.mp4)
 
 * * *
 
@@ -381,6 +381,8 @@ If you have or create a Twitter Account you can use:
 * https://faucet-sepolia.rockx.com/
 * https://faucet.paradigm.xyz/
 
+If you have a Google account you can use:
+* https://cloud.google.com/application/web3/faucet/ethereum/sepolia
 
 Other Useful Links
 
