@@ -381,6 +381,8 @@ If you have or create a Twitter Account you can use:
 * https://faucet-sepolia.rockx.com/
 * https://faucet.paradigm.xyz/
 
+If you have a Google account you can use:
+* https://cloud.google.com/application/web3/faucet/ethereum/sepolia
 
 Other Useful Links
 
