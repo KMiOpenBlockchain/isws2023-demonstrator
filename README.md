@@ -360,7 +360,7 @@ Useful Documents:
 
 ## Stepping Through the Demo
 
-[![Foo](https://blockchain7.kmi.open.ac.uk/movies/movies/isws-movie-2023.png)](https://blockchain7.kmi.open.ac.uk/movies/movies/isws-movie-2023.mp4)
+[![Foo](https://blockchain18.kmi.open.ac.uk/movies/movies/isws-movie-2023.png)](https://blockchain18.kmi.open.ac.uk/movies/movies/isws-movie-2023.mp4)
 
 * * *
 
