@@ -346,7 +346,7 @@ Solid is a technology for organizing data, applications, and identities on the w
 
 Our demonstrator uses Solid as a file store. In order to store and retreive files in the demo, you will first need to create yourself an inrupt.com solid pod. Sign up for an Inrupt Solid Pod here: [https://signup.pod.inrupt.com/](https://signup.pod.inrupt.com/)  
   
-For more information on using your Solid pod from the Inrupt podbrowser interface, please see their documentation: [https://docs.inrupt.com/user-interface/podbrowser/](https://docs.inrupt.com/user-interface/podbrowser/)  
+Solid is primarily a service with a standardised API, with no built-in user interface. Solid applications can run anywhere and access pods running elsewhere, with authorisation. For browsing pod contents, the following may be useful:  [https://penny.vincenttunru.com/](https://penny.vincenttunru.com/) or [https://podpro.dev/](https://podpro.dev/)
 
 ### Working with the Inrupt API
 
